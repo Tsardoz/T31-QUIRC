@@ -73,6 +73,7 @@ int main()
                 std::vector<std::pair<std::string, std::string>> keyValuePairs = parseKeyValuePairs(payload, ',');
                 if (keyValuePairs.size() != 3) {
                     std::cout << "doesnt have 3 elements" << std::endl;
+                    continue;
                 }
 
                 std::pair<std::string, std::string> id = keyValuePairs[0];
@@ -80,6 +81,7 @@ int main()
                 std::pair<std::string, std::string> passkey = keyValuePairs[2];
 
                 if (id.first != "i" || ssid.first != "n" || passkey.first != "p") {
+                    continue;
                     std::cout << "keys are not correct format" << std::endl;
                 }
 
