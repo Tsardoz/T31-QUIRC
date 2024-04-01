@@ -8,7 +8,8 @@ cv::Mat sf::getFrame()
     return frame;
 }
 
-void sf::SetupGPIO() {
+void sf::SetupGPIO()
+{
     // enable GPIO
     system("echo 38 > /sys/class/gpio/export");
     system("echo 39 > /sys/class/gpio/export");
@@ -20,7 +21,6 @@ void sf::SetupGPIO() {
     // set defaultly off
     system("echo 1 > /sys/class/gpio/gpio38/value");
     system("echo 1 > /sys/class/gpio/gpio39/value");
-
 
     TestLEDs(3);
 }
@@ -58,7 +58,8 @@ void sf::SetLEDColour(LEDColour colour)
 
 void sf::TestLEDs(int count)
 {
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
+    {
         SetLEDColour(LEDColour::PRIMARY);
         std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(1));
         SetLEDColour(LEDColour::ERROR);
@@ -70,14 +71,25 @@ void sf::TestLEDs(int count)
     }
 }
 
-void sf::SetupWifi(std::string ssid, std::string passkey) {
-    std::string cmd = "wifi.sh " + ssid + " " + passkey;
-    system(cmd.c_str());
+int sf::SetupWifi(std::string ssid, std::string passkey)
+{
+    std::string cmd = "wifiConnect.sh " + ssid + " " + passkey;
+    int err = system(cmd.c_str());
+    return err;
 }
 
-void sf::SetAutoExposure(int value) {
+int sf::CheckWifi()
+{
+    std::string cmd = "wifiCheck.sh";
+    int err = system(cmd.c_str());
+    return err;
+}
+
+void sf::SetAutoExposure(int value)
+{
     int code = system("/usr/sbin/imp-control aecomp " + value);
-    if (code != 0) {
-        //TODO Error
+    if (code != 0)
+    {
+        // TODO Error
     }
 }

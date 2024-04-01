@@ -22,6 +22,7 @@ namespace sf
     void SetLEDColour(LEDColour colour);
     void TestLEDs(int count);
 
-    void SetupWifi(std::string ssid, std::string passkey);
+    int SetupWifi(std::string ssid, std::string passkey);
+    int CheckWifi();
     void SetAutoExposure(int value);
 }

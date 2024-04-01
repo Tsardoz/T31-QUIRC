@@ -13,4 +13,4 @@ struct QROutput
 };
 
 std::vector<QROutput> scanQRWithQuirc(cv::Mat input);
-
+std::vector<std::pair<std::string, std::string>> parseKeyValuePairs(const std::string& input, char delimiter);

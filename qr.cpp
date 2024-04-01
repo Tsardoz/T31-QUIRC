@@ -57,3 +57,21 @@ std::vector<QROutput> scanQRWithQuirc(cv::Mat input)
     quirc_destroy(qr);
     return outputs;
 }
+
+// Function to parse the input string into key-value pairs
+std::vector<std::pair<std::string, std::string>> parseKeyValuePairs(const std::string& input, char delimiter) {
+    std::vector<std::pair<std::string, std::string>> keyValuePairs;
+    std::stringstream ss(input);
+    std::string token;
+
+    while (std::getline(ss, token, delimiter)) {
+        std::string::size_type pos = token.find('=');
+        if (pos != std::string::npos) {
+            std::string key = token.substr(0, pos);
+            std::string value = token.substr(pos + 1);
+            keyValuePairs.push_back(std::make_pair(key, value));
+        }
+    }
+
+    return keyValuePairs;
+}

@@ -22,8 +22,9 @@ void sf::TestLEDs(int count = 3) {
     }
 }
 
-void sf::SetupWifi(std::string ssid, std::string passkey) {
+int sf::SetupWifi(std::string ssid, std::string passkey) {
     std::cout << "Wifi: " << ssid << " | " << passkey << std::endl;
+    return 0;
 }
 
 void sf::SetAutoExposure(int value) {

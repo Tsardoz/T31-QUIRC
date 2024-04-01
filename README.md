@@ -1,6 +1,7 @@
 # device_source
 # Requirements
-- OpenCV
+- Linux or WSL
+- OpenCV (https://github.com/opencv/opencv/releases/latest)
 - OpenSSL
 - Curl
-- Quirc
+- Quirc (https://github.com/dlbeer/quirc)

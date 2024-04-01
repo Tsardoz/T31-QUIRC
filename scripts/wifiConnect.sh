@@ -25,7 +25,7 @@ udhcpc -x hostname:thingino -S -T1 -t15 -R -b -O search -p /var/run/udhcpc.wlan0
 
 sleep 10
 
-ping -c 4 "www.google.com"
+sh ./wifiCheck.sh
 
 if [ $? -gt 0 ]
 then
