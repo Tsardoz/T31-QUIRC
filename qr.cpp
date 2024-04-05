@@ -8,7 +8,9 @@ std::vector<QROutput> scanQRWithQuirc(cv::Mat input)
         perror("Failed to allocate memory");
         abort();
     }
-    if (quirc_resize(qr, 1920, 1080) < 0)
+    int width = input.cols;
+    int height = input.rows;
+    if (quirc_resize(qr, width, height) < 0)
     {
         perror("Failed to allocate video memory");
         abort();

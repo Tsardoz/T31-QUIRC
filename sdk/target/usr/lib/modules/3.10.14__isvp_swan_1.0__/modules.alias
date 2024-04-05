@@ -1,0 +1,10 @@
+# Aliases extracted from modules themselves.
+alias fs-vfat vfat
+alias devname:net/tun tun
+alias char-major-10-200 tun
+alias platform:i2c-gpio i2c_gpio
+alias sdio:c*v024CdF179* 8189fs
+alias of:N*T*Ct31,avpu* avpu
+alias platform:jz-pwm sample_pwm_core
+alias i2c:gc2053 sensor_gc2053_t31
+alias i2c:es8374 audio

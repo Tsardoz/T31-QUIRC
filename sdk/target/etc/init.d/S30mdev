@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		echo -n "Starting mdev: "
+		echo /sbin/mdev > /proc/sys/kernel/hotplug
+		/sbin/mdev -s
+		[ $? = 0 ] && echo "OK" || echo "FAIL"
+		;;
+
+	stop | restart | reload)
+		true
+		;;
+
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+		;;
+esac
+
+exit $?

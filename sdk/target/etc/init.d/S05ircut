@@ -1,0 +1,20 @@
+#!/bin/sh
+
+start() {
+	echo -n "Starting ircut: "
+	ircut ~ >/dev/null 2>&1
+	sleep 0.5
+	ircut ~ >/dev/null 2>&1
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		true
+		;;
+esac
+
+exit 0

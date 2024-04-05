@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		echo "Starting network..."
+		ifup -a
+		;;
+
+	stop)
+		echo "Stopping network..."
+		ifdown -a
+		;;
+
+	restart | reload)
+		stop
+		sleep 1
+		start
+		;;
+
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+		;;
+esac
+
+exit 0

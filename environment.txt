@@ -1,0 +1,8 @@
+fw_setenv enable_updates true
+fw_setenv gpio_wlan 57O
+fw_setenv gpio_ircut 53 52
+fw_setenv gpio_ir850 47
+fw_setenv gpio_ir940 49
+fw_setenv wlandev 8189fs
+fw_setenv wlanssid TelstraA60CF8
+fw_setenv wlanpass tnd2f99fh7

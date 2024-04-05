@@ -1,0 +1,11 @@
+prefix=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/protobuf/host
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Protocol Buffers
+Description: Google's Data Interchange Format
+Version: 3.21.12
+Libs: -L${libdir} -lprotobuf-lite
+Cflags: -I${includedir}
+Conflicts: protobuf

@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.134.100
+Requires: 
+Requires.private: libswresample >= 3.9.100, libavutil >= 56.70.100
+Conflicts:
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -pthread -lm -latomic -L/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/opencv4/host/bin/../mipsel-buildroot-linux-musl/sysroot/usr/lib -lz -latomic
+Cflags: -I${includedir}

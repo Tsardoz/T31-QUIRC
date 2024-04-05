@@ -1,0 +1,2 @@
+add-auto-load-safe-path /home/runner/output/toolchain_xburst1_musl_gcc13/host/mipsel-thingino-linux-musl/sysroot
+set sysroot /home/runner/output/toolchain_xburst1_musl_gcc13/host/mipsel-thingino-linux-musl/sysroot

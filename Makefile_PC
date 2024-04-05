@@ -1,0 +1,41 @@
+CC=gcc
+CPLUSPLUS=g++
+# Use pkg-config to set the correct includes and libraries for OpenCV
+PKG_CONFIG_OPENCV=`pkg-config --cflags --libs opencv4`
+INCLUDES=$(PKG_CONFIG_OPENCV)
+LIBS=$(PKG_CONFIG_OPENCV) -lquirc -lpthread -lm -lrt
+CFLAGS=-O2 -Wall $(INCLUDES)
+
+# List of object files
+OBJS=clahe.o utils.o identify.o decode.o version_db.o quirc.o
+
+# Compile the clahe target
+clahe: $(OBJS)
+	$(CPLUSPLUS) -o $@ $(OBJS) $(LIBS)
+
+
+identify.o: third-party/quirc/identify.c
+	$(CC) $(CFLAGS) -c third-party/quirc/identify.c -o identify.o
+
+decode.o: third-party/quirc/decode.c
+	$(CC) $(CFLAGS) -c third-party/quirc/decode.c -o decode.o
+
+version_db.o: third-party/quirc/version_db.c
+	$(CC) $(CFLAGS) -c third-party/quirc/version_db.c -o version_db.o
+
+quirc.o: third-party/quirc/quirc.c
+	$(CC) $(CFLAGS) -c third-party/quirc/quirc.c -o quirc.o
+
+# Compile C++ source files
+%.o: %.cpp
+	$(CPLUSPLUS) $(CFLAGS) -c $< -o $@
+
+# Compile C source files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean the build
+clean:
+	rm -f $(OBJS) clahe
+
+.PHONY: clean
