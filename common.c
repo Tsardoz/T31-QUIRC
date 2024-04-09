@@ -24,6 +24,7 @@
 #include <imp/imp_osd.h>
 
 #include "logodata_100x100_bgra.h"
+#include "parse_ini.h"
 
 #include "common.h"
 
@@ -41,119 +42,43 @@ static int statime_sp[STREAM_TYPE_NUM] = { 0 };
 static int bitrate_sp[STREAM_TYPE_NUM] = { 0 };
 #endif
 
-struct chn_conf chn[FS_CHN_NUM] = {
-	{
-		.index = CH0_INDEX,
-		.enable = CHN0_EN,
-    .payloadType = IMP_ENC_PROFILE_HEVC_MAIN,
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_NV12,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 2,
-			.type = FS_PHY_CHANNEL,
+struct chn_conf chn[FS_CHN_NUM]; // Declaration without initialization
 
-			//.scaler.enable = 0,
-			.scaler.enable = 1,
-			.scaler.outwidth = 640,
-			.scaler.outheight = 360,
-			//.crop.enable = CROP_EN,
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH,
-			.crop.height = SENSOR_HEIGHT,
+void initialize_chn() {
+	int idx;
 
-			//.picWidth = SENSOR_WIDTH,
-			//.picHeight = SENSOR_HEIGHT,
-			.picWidth = 640,
-			.picHeight = 360,
-		   },
-		.framesource_chn =	{ DEV_ID_FS, CH0_INDEX, 0},
-		.imp_encoder = { DEV_ID_ENC, CH0_INDEX, 0},
-	},
-	{
-		.index = CH1_INDEX,
-		.enable = CHN1_EN,
-    .payloadType = IMP_ENC_PROFILE_HEVC_MAIN,
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_NV12,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 2,
-			.type = FS_PHY_CHANNEL,
+	for (idx=0;idx<2;idx++) {
+		chn[idx].index = idx; // 0 for the main channel
+		chn[idx].enable = 1; // Enable the channel
+		chn[idx].payloadType = IMP_ENC_PROFILE_HEVC_MAIN;
+		chn[idx].fs_chn_attr.pixFmt = PIX_FMT_NV12;
+		chn[idx].fs_chn_attr.outFrmRateNum = config.channels[idx].frnum; // Set from config
+		chn[idx].fs_chn_attr.outFrmRateDen = config.channels[idx].frden;
+		chn[idx].fs_chn_attr.nrVBs = 2;
+		//FS_PHY_CHANNEL,			/**< physics frame channel */
+		//FS_EXT_CHANNEL,			/**< virtual frame channel */
+		chn[idx].fs_chn_attr.type = FS_PHY_CHANNEL;
+		chn[idx].fs_chn_attr.scaler.enable = 1;
+		chn[idx].fs_chn_attr.scaler.outwidth = config.channels[idx].width;
+		chn[idx].fs_chn_attr.scaler.outheight = config.channels[idx].height;
+		chn[idx].fs_chn_attr.crop.enable = 0;
+		chn[idx].fs_chn_attr.crop.top = 0;
+		chn[idx].fs_chn_attr.crop.left = 0;
+		chn[idx].fs_chn_attr.crop.width = config.width;
+		chn[idx].fs_chn_attr.crop.height = config.height;
+		chn[idx].fs_chn_attr.picWidth = config.channels[idx].width;
+		chn[idx].fs_chn_attr.picHeight = config.channels[idx].height;
+		// Frame source channel cell configuration
+		// Correctly assign the fields for framesource_chn and imp_encoder
+		chn[idx].framesource_chn.deviceID = DEV_ID_FS;
+		chn[idx].framesource_chn.groupID = 0; // You might need logic here if this should vary
+		chn[idx].framesource_chn.outputID = idx; // Adjusted to match the channel index
 
-			.scaler.enable = 1,
-			.scaler.outwidth = SENSOR_WIDTH_THIRD,
-			.scaler.outheight = SENSOR_HEIGHT_THIRD,
-
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH_THIRD,
-			.crop.height = SENSOR_HEIGHT_THIRD,
-
-			.picWidth = SENSOR_WIDTH_THIRD,
-			.picHeight = SENSOR_HEIGHT_THIRD,
-		   },
-		.framesource_chn =	{ DEV_ID_FS, CH1_INDEX, 0},
-		.imp_encoder = { DEV_ID_ENC, CH1_INDEX, 0},
-	},
-	{
-		.index = CH2_INDEX,
-		.enable = CHN2_EN,
-    .payloadType = IMP_ENC_PROFILE_HEVC_MAIN,
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_NV12,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 2,
-			.type = FS_PHY_CHANNEL,
-
-			.scaler.enable = 1,
-			.scaler.outwidth = SENSOR_WIDTH_SECOND,
-			.scaler.outheight = SENSOR_HEIGHT_SECOND,
-
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH_SECOND,
-			.crop.height = SENSOR_HEIGHT_SECOND,
-
-			.picWidth = SENSOR_WIDTH_SECOND,
-			.picHeight = SENSOR_HEIGHT_SECOND,
-		   },
-		.framesource_chn =	{ DEV_ID_FS, CH2_INDEX, 0},
-		.imp_encoder = { DEV_ID_ENC, CH2_INDEX, 0},
-	},
-	{
-		.index = CH3_INDEX,
-		.enable = CHN3_EN,
-    .payloadType = IMP_ENC_PROFILE_HEVC_MAIN,
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_NV12,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 2,
-			.type = FS_EXT_CHANNEL,
-
-			.scaler.enable = 1,
-			.scaler.outwidth = SENSOR_WIDTH_SECOND,
-			.scaler.outheight = SENSOR_HEIGHT_SECOND,
-
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH_SECOND,
-			.crop.height = SENSOR_HEIGHT_SECOND,
-
-			.picWidth = SENSOR_WIDTH_SECOND,
-			.picHeight = SENSOR_HEIGHT_SECOND,
-		   },
-		.framesource_chn =	{ DEV_ID_FS, CH3_INDEX, 0},
-		.imp_encoder = { DEV_ID_ENC, CH3_INDEX, 0},
-	},
-};
+		chn[idx].imp_encoder.deviceID = DEV_ID_ENC;
+		chn[idx].imp_encoder.groupID = 0; // Similarly, adjust if necessary
+		chn[idx].imp_encoder.outputID = idx; // Adjusted to match the channel index
+	}
+}
 
 struct chn_conf chn_ext_hsv[1] = {
 	{

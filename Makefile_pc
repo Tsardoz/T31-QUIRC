@@ -13,6 +13,8 @@ OBJS=clahe.o utils.o identify.o decode.o version_db.o quirc.o
 clahe: $(OBJS)
 	$(CPLUSPLUS) -o $@ $(OBJS) $(LIBS)
 
+parse_ini.o: parse_ini.c
+	$(CC) $(CFLAGS) -c parse_ini.c -o parse_ini.o
 
 identify.o: third-party/quirc/identify.c
 	$(CC) $(CFLAGS) -c third-party/quirc/identify.c -o identify.o

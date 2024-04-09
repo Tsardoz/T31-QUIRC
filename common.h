@@ -22,7 +22,7 @@ extern "C"
 #endif
 #endif /* __cplusplus */
 
-#define SENSOR_FRAME_RATE_NUM		10
+#define SENSOR_FRAME_RATE_NUM		25
 #define SENSOR_FRAME_RATE_DEN		1
 
 #define SENSOR_GC2053
@@ -288,11 +288,13 @@ extern "C"
 struct chn_conf{
 	unsigned int index;//0 for main channel ,1 for second channel
 	unsigned int enable;
-  IMPEncoderProfile payloadType;
+  	IMPEncoderProfile payloadType;
 	IMPFSChnAttr fs_chn_attr;
 	IMPCell framesource_chn;
 	IMPCell imp_encoder;
 };
+
+extern struct chn_conf chn[FS_CHN_NUM];
 
 typedef struct {
 	uint8_t *streamAddr;
@@ -354,6 +356,7 @@ int alcodec_encyuv_init(void **h, int picWidth, int picHight, void *info);
 int alcodec_encyuv_encode(void *h, IMPFrameInfo frame, streamInfo *stream);
 int alcodec_encyuv_deinit(void *h);
 
+void initialize_chn();
 
 #ifdef __cplusplus
 #if __cplusplus
