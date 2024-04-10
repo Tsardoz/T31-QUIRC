@@ -78,57 +78,73 @@ void initialize_chn() {
 		chn[idx].imp_encoder.groupID = 0; // Similarly, adjust if necessary
 		chn[idx].imp_encoder.outputID = idx; // Adjusted to match the channel index
 	}
+	chn[2].enable = 0; // Disable the channel
+	chn[3].enable = 0; // Disable the channel
 }
 
-struct chn_conf chn_ext_hsv[1] = {
-	{
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_HSV,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 3,
-			.type = FS_EXT_CHANNEL,
+void initialize_chn_hsv(int idx) {
+	chn[idx].index = idx; // 0 for the main channel
+	chn[idx].enable = 1; // Enable the channel
+	chn[idx].payloadType = IMP_ENC_PROFILE_HEVC_MAIN;
+	chn[idx].fs_chn_attr.pixFmt = PIX_FMT_HSV;
+	chn[idx].fs_chn_attr.outFrmRateNum = config.channels[idx].frnum; // Set from config
+	chn[idx].fs_chn_attr.outFrmRateDen = config.channels[idx].frden;
+	chn[idx].fs_chn_attr.nrVBs = 3;
+	//FS_PHY_CHANNEL,			/**< physics frame channel */
+	//FS_EXT_CHANNEL,			/**< virtual frame channel */
+	chn[idx].fs_chn_attr.type = FS_EXT_CHANNEL;
+	chn[idx].fs_chn_attr.scaler.enable = 1;
+	chn[idx].fs_chn_attr.scaler.outwidth = config.channels[idx].width;
+	chn[idx].fs_chn_attr.scaler.outheight = config.channels[idx].height;
+	chn[idx].fs_chn_attr.crop.enable = 0;
+	chn[idx].fs_chn_attr.crop.top = 0;
+	chn[idx].fs_chn_attr.crop.left = 0;
+	chn[idx].fs_chn_attr.crop.width = config.width;
+	chn[idx].fs_chn_attr.crop.height = config.height;
+	chn[idx].fs_chn_attr.picWidth = config.channels[idx].width;
+	chn[idx].fs_chn_attr.picHeight = config.channels[idx].height;
+	// Frame source channel cell configuration
+	// Correctly assign the fields for framesource_chn and imp_encoder
+	chn[idx].framesource_chn.deviceID = DEV_ID_FS;
+	chn[idx].framesource_chn.groupID = 0; // You might need logic here if this should vary
+	chn[idx].framesource_chn.outputID = idx; // Adjusted to match the channel index
 
-			.scaler.enable = 1,
-			.scaler.outwidth = SENSOR_WIDTH_SECOND,
-			.scaler.outheight = SENSOR_HEIGHT_SECOND,
+	chn[idx].imp_encoder.deviceID = DEV_ID_ENC;
+	chn[idx].imp_encoder.groupID = 0; // Similarly, adjust if necessary
+	chn[idx].imp_encoder.outputID = idx; // Adjusted to match the channel index
+}
 
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH_SECOND,
-			.crop.height = SENSOR_HEIGHT_SECOND,
+void initialize_chn_rgba(int idx) {
+	chn[idx].index = idx; // 0 for the main channel
+	chn[idx].enable = 1; // Enable the channel
+	chn[idx].payloadType = IMP_ENC_PROFILE_HEVC_MAIN;
+	chn[idx].fs_chn_attr.pixFmt = PIX_FMT_RGBA;
+	chn[idx].fs_chn_attr.outFrmRateNum = config.channels[idx].frnum; // Set from config
+	chn[idx].fs_chn_attr.outFrmRateDen = config.channels[idx].frden;
+	chn[idx].fs_chn_attr.nrVBs = 3;
+	//FS_PHY_CHANNEL,			/**< physics frame channel */
+	//FS_EXT_CHANNEL,			/**< virtual frame channel */
+	chn[idx].fs_chn_attr.type = FS_EXT_CHANNEL;
+	chn[idx].fs_chn_attr.scaler.enable = 1;
+	chn[idx].fs_chn_attr.scaler.outwidth = config.channels[idx].width;
+	chn[idx].fs_chn_attr.scaler.outheight = config.channels[idx].height;
+	chn[idx].fs_chn_attr.crop.enable = 0;
+	chn[idx].fs_chn_attr.crop.top = 0;
+	chn[idx].fs_chn_attr.crop.left = 0;
+	chn[idx].fs_chn_attr.crop.width = config.width;
+	chn[idx].fs_chn_attr.crop.height = config.height;
+	chn[idx].fs_chn_attr.picWidth = config.channels[idx].width;
+	chn[idx].fs_chn_attr.picHeight = config.channels[idx].height;
+	// Frame source channel cell configuration
+	// Correctly assign the fields for framesource_chn and imp_encoder
+	chn[idx].framesource_chn.deviceID = DEV_ID_FS;
+	chn[idx].framesource_chn.groupID = 0; // You might need logic here if this should vary
+	chn[idx].framesource_chn.outputID = idx; // Adjusted to match the channel index
 
-			.picWidth = SENSOR_WIDTH_SECOND,
-			.picHeight = SENSOR_HEIGHT_SECOND,
-		},
-	},
-};
-
-struct chn_conf chn_ext_rgba[1] = {
-	{
-		.fs_chn_attr = {
-			.pixFmt = PIX_FMT_RGBA,
-			.outFrmRateNum = SENSOR_FRAME_RATE_NUM,
-			.outFrmRateDen = SENSOR_FRAME_RATE_DEN,
-			.nrVBs = 3,
-			.type = FS_EXT_CHANNEL,
-
-			.scaler.enable = 1,
-			.scaler.outwidth = SENSOR_WIDTH_SECOND,
-			.scaler.outheight = SENSOR_HEIGHT_SECOND,
-
-			.crop.enable = 0,
-			.crop.top = 0,
-			.crop.left = 0,
-			.crop.width = SENSOR_WIDTH_SECOND,
-			.crop.height = SENSOR_HEIGHT_SECOND,
-
-			.picWidth = SENSOR_WIDTH_SECOND,
-			.picHeight = SENSOR_HEIGHT_SECOND,
-		},
-	},
-};
+	chn[idx].imp_encoder.deviceID = DEV_ID_ENC;
+	chn[idx].imp_encoder.groupID = 0; // Similarly, adjust if necessary
+	chn[idx].imp_encoder.outputID = idx; // Adjusted to match the channel index
+}
 
 extern int IMP_OSD_SetPoolSize(int size);
 
@@ -154,10 +170,23 @@ int sample_system_init()
  */
 
 	memset(&sensor_info, 0, sizeof(IMPSensorInfo));
-	memcpy(sensor_info.name, SENSOR_NAME, sizeof(SENSOR_NAME));
+	//memcpy(sensor_info.name, config.name, sizeof(config.name));
+	size_t copySize = strlen(config.name) + 1; // +1 for null terminator
+	if (copySize > sizeof(sensor_info.name)) {
+		copySize = sizeof(sensor_info.name);
+	}
+	memcpy(sensor_info.name, config.name, copySize);
+	sensor_info.name[sizeof(sensor_info.name) - 1] = '\0'; // Ensure null termination
+
 	sensor_info.cbus_type = SENSOR_CUBS_TYPE;
-	memcpy(sensor_info.i2c.type, SENSOR_NAME, sizeof(SENSOR_NAME));
-	sensor_info.i2c.addr = SENSOR_I2C_ADDR;
+
+	copySize = strlen(config.name) + 1; // +1 for null terminator
+	if (copySize > sizeof(sensor_info.i2c.type)) {
+		copySize = sizeof(sensor_info.i2c.type);
+	}
+	memcpy(sensor_info.i2c.type, config.name, copySize);
+	sensor_info.i2c.type[sizeof(sensor_info.i2c.type) - 1] = '\0'; // Ensure null termination
+	sensor_info.i2c.addr = config.i2c_addr;
 
 	IMP_LOG_DBG(TAG, "sample_system_init start\n");
 
@@ -261,31 +290,33 @@ int sample_framesource_streamon()
 			if (ret < 0) {
 				IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, chn[i].index);
 				return -1;
+			} else {
+				printf("Channel %d enabled",i);
 			}
 		}
 	}
 	return 0;
 }
 
-int sample_framesource_ext_hsv_streamon()
+int sample_framesource_ext_hsv_streamon(int idx)
 {
 	int ret = 0;
 	/* Enable channels */
-	ret = IMP_FrameSource_EnableChn(3);
+	ret = IMP_FrameSource_EnableChn(idx);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, idx);
 		return -1;
 	}
 	return 0;
 }
 
-int sample_framesource_ext_rgba_streamon()
+int sample_framesource_ext_rgba_streamon(int idx)
 {
 	int ret = 0;
 	/* Enable channels */
-	ret = IMP_FrameSource_EnableChn(3);
+	ret = IMP_FrameSource_EnableChn(idx);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, idx);
 		return -1;
 	}
 	return 0;
@@ -307,25 +338,25 @@ int sample_framesource_streamoff()
 	return 0;
 }
 
-int sample_framesource_ext_hsv_streamoff()
+int sample_framesource_ext_hsv_streamoff(int idx)
 {
 	int ret = 0;
 	/* Enable channels */
-	ret = IMP_FrameSource_DisableChn(3);
+	ret = IMP_FrameSource_DisableChn(idx);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, idx);
 		return -1;
 	}
 	return 0;
 }
 
-int sample_framesource_ext_rgba_streamoff()
+int sample_framesource_ext_rgba_streamoff(int idx)
 {
 	int ret = 0;
 	/* Enable channels */
-	ret = IMP_FrameSource_DisableChn(3);
+	ret = IMP_FrameSource_DisableChn(idx);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, idx);
 		return -1;
 	}
 	return 0;
@@ -441,49 +472,49 @@ int sample_framesource_init()
 	return 0;
 }
 
-int sample_framesource_ext_hsv_init()
+/*int sample_framesource_ext_hsv_init(int idx)
 {
 	int ret;
-    chn[3].enable = 0;
+    chn[idx].enable = 0;
 
-	ret = IMP_FrameSource_CreateChn(3, &chn_ext_hsv[0].fs_chn_attr);
+	ret = IMP_FrameSource_CreateChn(idx, &chn_ext_hsv[0].fs_chn_attr);
 	if(ret < 0){
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", idx);
 		return -1;
 	}
 
-	ret = IMP_FrameSource_SetChnAttr(3, &chn_ext_hsv[0].fs_chn_attr);
+	ret = IMP_FrameSource_SetChnAttr(idx, &chn_ext_hsv[0].fs_chn_attr);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n", 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n", idx);
 		return -1;
 	}
 	return 0;
 }
 
-int sample_framesource_ext_rgba_init()
+int sample_framesource_ext_rgba_init(int extidx,int srcidx)
 {
 	int ret;
-    chn[3].enable = 0;
+    chn[extidx].enable = 0;
 
-	ret = IMP_FrameSource_CreateChn(3, &chn_ext_rgba[0].fs_chn_attr);
+	ret = IMP_FrameSource_CreateChn(extidx, &chn_ext_rgba[0].fs_chn_attr);
 	if(ret < 0){
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", extidx);
 		return -1;
 	}
 
-	ret = IMP_FrameSource_SetSource(3, 2);
+	ret = IMP_FrameSource_SetSource(extidx, srcidx);
 	if(ret < 0){
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetSource(chn%d) error !\n", 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetSource(chn%d) error !\n", extidx);
 		return -1;
 	}
 
-	ret = IMP_FrameSource_SetChnAttr(3, &chn_ext_rgba[0].fs_chn_attr);
+	ret = IMP_FrameSource_SetChnAttr(extidx, &chn_ext_rgba[0].fs_chn_attr);
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n", 3);
+		IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n", extidx);
 		return -1;
 	}
 	return 0;
-}
+}*/
 
 int sample_framesource_exit()
 {
@@ -502,11 +533,11 @@ int sample_framesource_exit()
 	return 0;
 }
 
-int sample_framesource_ext_hsv_exit()
+int sample_framesource_ext_hsv_exit(int idx)
 {
 	int ret;
 
-	ret = IMP_FrameSource_DestroyChn(3);
+	ret = IMP_FrameSource_DestroyChn(idx);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "IMP_FrameSource_DestroyChn() error: %d\n", ret);
 		return -1;
@@ -514,11 +545,11 @@ int sample_framesource_ext_hsv_exit()
 	return 0;
 }
 
-int sample_framesource_ext_rgba_exit()
+int sample_framesource_ext_rgba_exit(int idx)
 {
 	int ret;
 
-	ret = IMP_FrameSource_DestroyChn(3);
+	ret = IMP_FrameSource_DestroyChn(idx);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "IMP_FrameSource_DestroyChn() error: %d\n", ret);
 		return -1;
@@ -852,8 +883,8 @@ IMPRgnHandle *sample_osd_init(int grpNum)
 	int picw = 100;
 	int pich = 100;
 	rAttrLogo.type = OSD_REG_PIC;
-	rAttrLogo.rect.p0.x = SENSOR_WIDTH - 100;
-	rAttrLogo.rect.p0.y = SENSOR_HEIGHT - 100;
+	rAttrLogo.rect.p0.x = config.width - 100;
+	rAttrLogo.rect.p0.y = config.height - 100;
 	rAttrLogo.rect.p1.x = rAttrLogo.rect.p0.x+picw-1;     //p0 is start，and p1 well be epual p0+width(or heigth)-1
 	rAttrLogo.rect.p1.y = rAttrLogo.rect.p0.y+pich-1;
 	rAttrLogo.fmt = PIX_FMT_BGRA;
@@ -886,10 +917,10 @@ IMPRgnHandle *sample_osd_init(int grpNum)
 	IMPOSDRgnAttr rAttrCover;
 	memset(&rAttrCover, 0, sizeof(IMPOSDRgnAttr));
 	rAttrCover.type = OSD_REG_COVER;
-	rAttrCover.rect.p0.x = SENSOR_WIDTH/2-100;
-	rAttrCover.rect.p0.y = SENSOR_HEIGHT/2-100;
-	rAttrCover.rect.p1.x = rAttrCover.rect.p0.x+SENSOR_WIDTH/2-1+50;     //p0 is start，and p1 well be epual p0+width(or heigth)-1
-	rAttrCover.rect.p1.y = rAttrCover.rect.p0.y+SENSOR_HEIGHT/2-1+50;
+	rAttrCover.rect.p0.x = config.width/2-100;
+	rAttrCover.rect.p0.y = config.height/2-100;
+	rAttrCover.rect.p1.x = rAttrCover.rect.p0.x+config.width/2-1+50;     //p0 is start，and p1 well be epual p0+width(or heigth)-1
+	rAttrCover.rect.p1.y = rAttrCover.rect.p0.y+config.height/2-1+50;
 	rAttrCover.fmt = PIX_FMT_BGRA;
 	rAttrCover.data.coverData.color = OSD_BLACK;
 	ret = IMP_OSD_SetRgnAttr(rHanderCover, &rAttrCover);

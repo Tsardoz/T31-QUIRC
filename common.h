@@ -22,10 +22,11 @@ extern "C"
 #endif
 #endif /* __cplusplus */
 
-#define SENSOR_FRAME_RATE_NUM		25
-#define SENSOR_FRAME_RATE_DEN		1
+//#define SENSOR_FRAME_RATE_NUM		25
+//#define SENSOR_FRAME_RATE_DEN		1
+#define SENSOR_CUBS_TYPE        TX_SENSOR_CONTROL_INTERFACE_I2C
 
-#define SENSOR_GC2053
+/*#define SENSOR_GC2053
 //#define SENSOR_JXF37
 
 #if defined SENSOR_AR0141
@@ -252,7 +253,7 @@ extern "C"
 #define SENSOR_HEIGHT_SECOND	360
 
 #define SENSOR_WIDTH_THIRD		1280
-#define SENSOR_HEIGHT_THIRD		720
+#define SENSOR_HEIGHT_THIRD		720*/
 
 #define BITRATE_720P_Kbs        1000
 
