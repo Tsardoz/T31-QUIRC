@@ -1,6 +1,6 @@
 #! /bin/bash
 # Generated automatically by config.status (libtool) 2.4.6
-# Libtool was configured on host b52abc42e76e:
+# Libtool was configured on host 5122a5d2c37a:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -165,10 +165,10 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=no
 
 # A C compiler.
-LTCC="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/ccache /usr/bin/gcc"
+LTCC="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/ccache /usr/bin/gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-O2 -I/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/include"
+LTCFLAGS="-O2 -I/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/include"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -318,7 +318,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/ccache /usr/bin/gcc"
+CC="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/ccache /usr/bin/gcc"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes
@@ -11674,7 +11674,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/ccache /usr/bin/g++"
+CC="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/ccache /usr/bin/g++"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes

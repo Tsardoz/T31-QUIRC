@@ -36,7 +36,7 @@ LANGUAGE=C;	export LANGUAGE
 LC_ALL=C;	export LC_ALL
 LC_CTYPE=C;	export LC_CTYPE
 
-prefix="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host"
+prefix="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host"
 exec_prefix="${prefix}"
 
 bindir="${exec_prefix}/bin"
@@ -101,7 +101,7 @@ fi
 # There is no portable way to find the list of standard library directories.
 # Require a POSIX shell anyway, to keep this simple.
 lib_flags=
-for opt in -L$libdir -L/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host/lib -Wl,-rpath,/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host/lib  $LIBS
+for opt in -L$libdir -L/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host/lib -Wl,-rpath,/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host/lib  $LIBS
 do
 	case $opt in
 	-specs*) # ignore linker specs-files which were used to build library
@@ -283,7 +283,7 @@ ENDECHO
 		echo "/usr/share/terminfo"
 		;;
 	--terminfo-dirs)
-		echo "/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host/share/terminfo"
+		echo "/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host/share/terminfo"
 		;;
 	--termpath)
 		echo ""

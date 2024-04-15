@@ -17,7 +17,7 @@ old_library=''
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' /home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/build/libnl-3.9.0/lib/libnl-route-3.la /home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/build/libnl-3.9.0/lib/libnl-3.la -lpthread'
+dependency_libs=' /home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/build/libnl-3.9.0/lib/libnl-route-3.la /home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/build/libnl-3.9.0/lib/libnl-3.la -lpthread'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/wpa_supplicant/host/mipsel-buildroot-linux-musl/sysroot/usr/lib'
+libdir='/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/wpa_supplicant/host/mipsel-buildroot-linux-musl/sysroot/usr/lib'

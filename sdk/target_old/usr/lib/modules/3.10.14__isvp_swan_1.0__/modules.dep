@@ -1,0 +1,16 @@
+kernel/fs/fat/fat.ko:
+kernel/fs/fat/vfat.ko: kernel/fs/fat/fat.ko
+kernel/drivers/net/tun.ko:
+kernel/drivers/i2c/algos/i2c-algo-bit.ko:
+kernel/drivers/i2c/busses/i2c-gpio.ko: kernel/drivers/i2c/algos/i2c-algo-bit.ko
+kernel/drivers/mmc/host/jzmmc_v12.ko:
+extra/8189fs.ko:
+ingenic/gpio.ko:
+ingenic/avpu.ko:
+ingenic/sample_pwm_core.ko:
+ingenic/sensor_gc2053_t31.ko: ingenic/tx-isp-t31.ko
+ingenic/audio.ko:
+extra/v4l2loopback.ko:
+ingenic/sample_pwm_hal.ko:
+ingenic/motor.ko:
+ingenic/tx-isp-t31.ko:

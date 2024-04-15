@@ -19,8 +19,8 @@ import gdb
 import os
 import os.path
 
-pythondir = '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zlib/host/opt/ext-toolchain/share/gcc-13.2.0/python'
-libdir = "/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zlib/host/mipsel-buildroot-linux-musl/sysroot/lib"
+pythondir = '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zlib/host/opt/ext-toolchain/share/gcc-13.2.0/python'
+libdir = "/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zlib/host/mipsel-buildroot-linux-musl/sysroot/lib"
 
 # This file might be loaded when there is no current objfile.  This
 # can happen if the user loads it manually.  In this case we don't

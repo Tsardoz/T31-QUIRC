@@ -32,4 +32,3 @@ void print_config(const SensorConfig *cfg);
 int parse_ini_file(const char *file_path);
 void ini_parse_line(char *section, char *key, char *value);
 char* trim_whitespace(char* str);
-void ApplyCameraSettings(const SensorConfig* cfg, const char* state);

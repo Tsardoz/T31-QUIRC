@@ -1,0 +1,20 @@
+#
+# Author: Lasse Collin
+#
+# This file has been put into the public domain.
+# You can do whatever you want with this file.
+#
+
+prefix=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-xz/host
+exec_prefix=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-xz/host
+libdir=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-xz/host/lib
+includedir=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-xz/host/include
+
+Name: liblzma
+Description: General purpose data compression library
+URL: https://tukaani.org/xz/
+Version: 5.4.5
+Cflags: -I${includedir}
+Cflags.private: -DLZMA_API_STATIC
+Libs: -L${libdir} -llzma
+Libs.private: -pthread -lpthread

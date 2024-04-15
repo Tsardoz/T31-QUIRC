@@ -2,7 +2,7 @@
 #   Copyright (C) 2011-2020, Yann Collet.
 #   BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
 
-prefix=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-squashfs/host
+prefix=/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-squashfs/host
 libdir=${prefix}/lib
 includedir=${prefix}/include
 

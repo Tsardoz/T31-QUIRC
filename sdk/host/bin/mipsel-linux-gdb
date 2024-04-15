@@ -1,1 +1,1 @@
-mipsel-buildroot-linux-musl-gdb
+../opt/ext-toolchain/bin/mipsel-linux-gdb

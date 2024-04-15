@@ -32,7 +32,7 @@ use warnings FATAL => 'all';
 my $buildauxdir;
 BEGIN
 {
-  my $pkgdatadir = $ENV{'autom4te_perllibdir'} || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/autoconf';
+  my $pkgdatadir = $ENV{'autom4te_perllibdir'} || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/autoconf';
   unshift @INC, $pkgdatadir;
 
   $buildauxdir = $ENV{'autom4te_buildauxdir'} || $pkgdatadir . '/build-aux';
@@ -116,9 +116,9 @@ Written by David J. MacKenzie and Akim Demaille.
 ";
 
 # Lib files.
-my $autoconf    = $ENV{'AUTOCONF'}    || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/autoconf';
-my $autoheader  = $ENV{'AUTOHEADER'}  || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/autoheader';
-my $autom4te    = $ENV{'AUTOM4TE'}    || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/autom4te';
+my $autoconf    = $ENV{'AUTOCONF'}    || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/autoconf';
+my $autoheader  = $ENV{'AUTOHEADER'}  || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/autoheader';
+my $autom4te    = $ENV{'AUTOM4TE'}    || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/autom4te';
 my $automake    = $ENV{'AUTOMAKE'}    || 'automake';
 my $aclocal     = $ENV{'ACLOCAL'}     || 'aclocal';
 my $libtoolize  = $ENV{'LIBTOOLIZE'}  || 'libtoolize';

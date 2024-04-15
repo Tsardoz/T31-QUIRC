@@ -14,7 +14,7 @@ library_names='liblzmadec.so.0.0.0 liblzmadec.so.0 liblzmadec.so'
 old_library=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/wifi-rtl8189fs/host/lib'
+dependency_libs=' -L/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/wifi-rtl8189fs/host/lib'
 
 # Version information for liblzmadec.
 current=0
@@ -32,4 +32,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/wifi-rtl8189fs/host/lib'
+libdir='/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/wifi-rtl8189fs/host/lib'

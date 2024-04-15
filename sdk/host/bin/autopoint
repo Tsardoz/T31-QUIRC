@@ -1,5 +1,5 @@
 #!/bin/sh
-m4src=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/gettext-tiny/m4
+m4src=/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/gettext-tiny/m4
 
 if ! test -e configure.ac ; then
 	echo "$0: error: configure.ac not found" >&2
@@ -23,15 +23,15 @@ do
   if [ "${line##*po/Makefile.in}" != "$line" ]; then
     poprefix="${line##*[}"
     poprefix="${poprefix%%po/Makefile.in*}"
-    install -D -m 644 /home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/gettext-tiny/data/autopoint_Makefile.in "./${poprefix}/po/Makefile.in.in"
+    install -D -m 644 /home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/gettext-tiny/data/autopoint_Makefile.in "./${poprefix}/po/Makefile.in.in"
   fi
 done < "configure.ac"
 
 touch "./${dirprefix}/config.rpath" ABOUT-NLS
 
 for i in intl/Makefile.in po/Makefile.in.in ; do
-	install -D -m 644 /home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/gettext-tiny/data/autopoint_Makefile.in "$i"
+	install -D -m 644 /home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/gettext-tiny/data/autopoint_Makefile.in "$i"
 done
 
-install -D -m 644 /home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/gettext-tiny/data/Makevars.template po/Makevars.template
+install -D -m 644 /home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/gettext-tiny/data/Makevars.template po/Makevars.template
 true

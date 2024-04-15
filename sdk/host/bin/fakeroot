@@ -30,12 +30,12 @@ fatal ()
 }
 
 # strip /bin/fakeroot to find install prefix
-FAKEROOT_PREFIX=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-fakeroot/host
-FAKEROOT_BINDIR=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-fakeroot/host/bin
+FAKEROOT_PREFIX=/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-fakeroot/host
+FAKEROOT_BINDIR=/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-fakeroot/host/bin
 
 USEABSLIBPATH=0
 FAKEROOT_LIB=libfakeroot.so
-PATHS=/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-fakeroot/host/lib:${FAKEROOT_PREFIX}/lib64/libfakeroot:${FAKEROOT_PREFIX}/lib32/libfakeroot
+PATHS=/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-fakeroot/host/lib:${FAKEROOT_PREFIX}/lib64/libfakeroot:${FAKEROOT_PREFIX}/lib32/libfakeroot
 FAKED=${FAKEROOT_BINDIR}/faked
 
 FAKED_MODE="unknown-is-root"

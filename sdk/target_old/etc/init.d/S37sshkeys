@@ -1,0 +1,50 @@
+#!/bin/sh
+
+DROPBEAR_KEY_DIR="/etc/dropbear"
+DROPBEAR_KEY="${DROPBEAR_KEY_DIR}/dropbear_ed25519_host_key"
+[ -L "$DROPBEAR_KEY_DIR" ] && rm -r "$DROPBEAR_KEY_DIR"
+[ ! -d "$DROPBEAR_KEY_DIR" ] && mkdir -p "$DROPBEAR_KEY_DIR"
+
+SSHKEY_ENV=$(fw_printenv -n sshkey_ed25519)
+
+generate_keys() {
+	dropbearkey -t ed25519 -f $DROPBEAR_KEY 2>&1 | logger -t $0
+	logger -t $0 "Generated dropbear host keys."
+}
+
+restore_keys() {
+	echo "$SSHKEY_ENV" | base64 -d | gzip -d > $DROPBEAR_KEY
+	logger -t $0 "SSH Key restored."
+}
+
+save_keys() {
+	SSHKEY_ENV=$(gzip -c $DROPBEAR_KEY | base64 | tr -d '\n')
+	fw_setenv sshkey_ed25519 "$SSHKEY_ENV"
+	logger -t $0 "SSH key backed up."
+}
+
+case "$1" in
+	start)
+		if [ -s "$DROPBEAR_KEY" ]; then
+			if [ -z "$SSHKEY_ENV" ]; then
+				save_keys
+			fi
+		else
+			if [ -z "$SSHKEY_ENV" ]; then
+				generate_keys
+				save_keys
+			else
+				restore_keys
+			fi
+		fi
+		;;
+	reload | stop | restart)
+		true
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+		;;
+esac
+
+exit 0

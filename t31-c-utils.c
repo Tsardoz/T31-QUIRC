@@ -125,7 +125,7 @@ void SetImp(const char* isp, int value) {
     }
 }
 
-int start_camera() {
+int start_camera(int channel) {
    	IMPFSChnAttr fs_chn_attr[2];
 
     /* Step.1 System init */
@@ -136,22 +136,22 @@ int start_camera() {
 	}
 
 	/* Step.2 FrameSource init */
-	if (chn[0].enable) {
-		ret = IMP_FrameSource_CreateChn(chn[0].index, &chn[0].fs_chn_attr);
+	if (chn[channel].enable) {
+		ret = IMP_FrameSource_CreateChn(chn[channel].index, &chn[channel].fs_chn_attr);
 		if(ret < 0){
-			IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", chn[0].index);
+			IMP_LOG_ERR(TAG, "IMP_FrameSource_CreateChn(chn%d) error !\n", chn[channel].index);
 			return -1;
 		}
 
-		ret = IMP_FrameSource_SetChnAttr(chn[0].index, &chn[0].fs_chn_attr);
+		ret = IMP_FrameSource_SetChnAttr(chn[channel].index, &chn[channel].fs_chn_attr);
 		if (ret < 0) {
-			IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n",  chn[0].index);
+			IMP_LOG_ERR(TAG, "IMP_FrameSource_SetChnAttr(chn%d) error !\n",  chn[channel].index);
 			return -1;
 		}
 	}
 
 	/* Step.3 Snap raw config */
-	ret = IMP_FrameSource_GetChnAttr(0, &fs_chn_attr[0]);
+	ret = IMP_FrameSource_GetChnAttr(channel, &fs_chn_attr[channel]);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "%s(%d):IMP_FrameSource_GetChnAttr failed\n", __func__, __LINE__);
 		return -1;
@@ -163,8 +163,8 @@ int start_camera() {
 		return -1;
 	}
 #endif
-	fs_chn_attr[0].pixFmt = PIX_FMT_NV12;//PIX_FMT_YUYV422;
-	ret = IMP_FrameSource_SetChnAttr(0, &fs_chn_attr[0]);
+	fs_chn_attr[channel].pixFmt = PIX_FMT_NV12;//PIX_FMT_YUYV422;
+	ret = IMP_FrameSource_SetChnAttr(channel, &fs_chn_attr[channel]);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "%s(%d):IMP_FrameSource_SetChnAttr failed\n", __func__, __LINE__);
 		return -1;
@@ -174,16 +174,16 @@ int start_camera() {
 	/* to do */
 
 	/* Step.4 Stream On */
-	if (chn[0].enable){
-		ret = IMP_FrameSource_EnableChn(chn[0].index);
+	if (chn[channel].enable){
+		ret = IMP_FrameSource_EnableChn(chn[channel].index);
 		if (ret < 0) {
-			IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, chn[0].index);
+			IMP_LOG_ERR(TAG, "IMP_FrameSource_EnableChn(%d) error: %d\n", ret, chn[channel].index);
 			return -1;
 		}
 	}
 
 	/* Step.4 Snap raw */
-	ret = IMP_FrameSource_SetFrameDepth(0, 1);
+	ret = IMP_FrameSource_SetFrameDepth(channel, 1);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "%s(%d):IMP_FrameSource_SetFrameDepth failed\n", __func__, __LINE__);
 		return -1;
@@ -191,8 +191,8 @@ int start_camera() {
     return 0;
 }
 
-int stop_camera() {
-    int ret = IMP_FrameSource_SetFrameDepth(0, 0);
+int stop_camera(int channel) {
+    int ret = IMP_FrameSource_SetFrameDepth(channel, 0);
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "%s(%d):IMP_FrameSource_SetFrameDepth failed\n", __func__, __LINE__);
 		return -1;
@@ -208,18 +208,18 @@ int stop_camera() {
 	}
 #endif
 	/* Step.5 Stream Off */
-	if (chn[0].enable){
-		ret = IMP_FrameSource_DisableChn(chn[0].index);
+	if (chn[channel].enable){
+		ret = IMP_FrameSource_DisableChn(chn[channel].index);
 		if (ret < 0) {
-			IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, chn[0].index);
+			IMP_LOG_ERR(TAG, "IMP_FrameSource_DisableChn(%d) error: %d\n", ret, chn[channel].index);
 			return -1;
 		}
 	}
 
 	/* Step.6 FrameSource exit */
-	if (chn[0].enable) {
+	if (chn[channel].enable) {
 		/*Destroy channel i*/
-		ret = IMP_FrameSource_DestroyChn(0);
+		ret = IMP_FrameSource_DestroyChn(channel);
 		if (ret < 0) {
 			IMP_LOG_ERR(TAG, "IMP_FrameSource_DestroyChn() error: %d\n", ret);
 			return -1;

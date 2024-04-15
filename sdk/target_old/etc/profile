@@ -1,0 +1,29 @@
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/tmp"
+export HOME=$(grep -e "^${USER:-root}:" /etc/passwd | cut -d ":" -f 6)
+export HOME=${HOME:-/root}
+export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export TZ=$(cat /etc/TZ)
+export EDITOR='/bin/vi'
+export SENSOR=$(cat /etc/sensor/model)
+export SOC=$(/usr/sbin/soc -f)
+
+echo_c() { echo -ne "\e[1;$1m$2\e[0m"; }
+
+if [ "$PS1" ]; then
+	[ -f /etc/os-release ] && . /etc/os-release
+	[ -f /etc/banner ] && echo_c 34 "$(cat /etc/banner)"
+	echo
+	echo_c 32 "$(printf "%64s" $VERSION)"
+	echo -e "\n\n"
+	if [ "$(id -u)" -eq 0 ]; then
+		export PS1="\[\e[31m\][\[\e[m\]\[\e[38;5;172m\]\u\[\e[m\]@\[\e[38;5;153m\]\h\[\e[m\] \[\e[38;5;214m\]\W\[\e[m\]\[\e[31m\]]\[\e[m\]\\# "
+	else
+		export PS1='\u@\h:\w\$ '
+	fi
+fi
+
+# Source configuration files from /etc/profile.d
+for i in /etc/profile.d/*; do
+	[ -r "$i" ] && . $i
+done
+unset i

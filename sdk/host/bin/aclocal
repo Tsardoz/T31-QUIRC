@@ -25,7 +25,7 @@ use warnings FATAL => 'all';
 
 BEGIN
 {
-  unshift (@INC, '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/automake-1.16')
+  unshift (@INC, '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/automake-1.16')
     unless $ENV{AUTOMAKE_UNINSTALLED};
 }
 
@@ -65,8 +65,8 @@ $perl_threads = 0;
 # ACLOCAL_PATH environment variable, and reset with the '--system-acdir'
 # option.
 my @user_includes = ();
-my @automake_includes = ('/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/aclocal-' . $APIVERSION);
-my @system_includes = ('/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/aclocal');
+my @automake_includes = ('/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/aclocal-' . $APIVERSION);
+my @system_includes = ('/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/aclocal');
 
 # Whether we should copy M4 file in $user_includes[0].
 my $install = 0;

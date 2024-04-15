@@ -1,34 +1,48 @@
 #!/bin/sh
 
+config="/etc/imp.conf"
+
+check_imp() {
+	echo -n "Establishing connection ..."
+	i=0
+	while :; do
+		grep -q running /proc/jz/isp/isp-fs &&
+			imp-control getdeviceid > /dev/null &&
+			echo " OK" && return
+		echo -n "."
+		i=$((i + 1))
+		sleep 1
+		[ $i -gt 10 ] && echo " FAIL (timeout)" && exit 1
+	done
+}
+
 start() {
-	[ ! -f "/etc/imp.conf" ] && return
-
-	echo -n "Restoring IMP Configuration: "
-	while read -r line; do
-		imp-control $line
-	done < /etc/imp.conf
-	echo "OK"
-}
-
-stop() {
-	:
-}
-
-restart() {
-	start
-}
-
-reload() {
-	start
+	check_imp
+	echo -n "Restoring IMP Configuration:"
+	if [ -f "$config" ]; then
+		echo
+		while read -r line; do
+			echo -e " * $line"
+			imp-control $line > /dev/null
+		done < $config
+		echo "Done"
+	else
+		echo "DISABLED"
+		return
+	fi
 }
 
 case "$1" in
-	start|stop|restart|reload)
-		"$1"
+	start | restart | reload)
+		start
+		;;
+	stop)
+		:
 		;;
 	*)
 		echo "Usage: $0 {start|restart|reload}"
 		exit 1
+		;;
 esac
 
 exit 0

@@ -29,7 +29,7 @@ use warnings FATAL => 'all';
 
 BEGIN
 {
-  my $pkgdatadir = $ENV{'autom4te_perllibdir'} || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/autoconf';
+  my $pkgdatadir = $ENV{'autom4te_perllibdir'} || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/autoconf';
   unshift @INC, $pkgdatadir;
 
   # Override SHELL.  On DJGPP SHELL may not be set to a shell
@@ -44,8 +44,8 @@ use Autom4te::Channels qw(msg);
 use Autom4te::General;
 
 # Lib files.
-my $autom4te = $ENV{'AUTOM4TE'} || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/bin/autom4te';
-my $trailer_m4 = $ENV{'trailer_m4'} || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/autoconf/autoconf/trailer.m4';
+my $autom4te = $ENV{'AUTOM4TE'} || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/bin/autom4te';
+my $trailer_m4 = $ENV{'trailer_m4'} || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/autoconf/autoconf/trailer.m4';
 
 # $HELP
 # -----

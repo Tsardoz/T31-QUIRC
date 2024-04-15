@@ -128,30 +128,6 @@ void print_config(const SensorConfig *cfg) {
 }
 
 
-void ApplyCameraSettings(const SensorConfig* cfg, const char* state) {
-    if (cfg == NULL || state == NULL) {
-        printf("Invalid configuration or state.\n");
-        return;
-    }
-    
-    const ImageProfile* profile = NULL;
-    
-    if (strcmp(state, "natural") == 0) {
-        profile = &cfg->natural;
-    } else if (strcmp(state, "qrcode") == 0) {
-        profile = &cfg->qrcode;
-    } else {
-        printf("Unknown state: %s\n", state);
-        return;
-    }
-
-    SetImp("aecomp", profile->aecomp);
-    SetImp("contrast", profile->contrast);
-    SetImp("brightness", profile->brightness);
-    SetImp("sharpness", profile->sharpness);
-    SetImp("drc", profile->drc);
-}
-
 /*int main() {
     if (parse_ini_file("config.ini") == 0) {
         print_config(&config);

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+start() {
+	echo -n "Starting rc.local: "
+	/etc/rc.local
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+stop() {
+	echo -n "Stopping rc.local: "
+	if [ ! -x /etc/rc.local.stop ]; then
+		echo "/etc/rc.local.stop not found."
+		exit 1
+	fi
+	/etc/rc.local.stop
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+case "$1" in
+	start | stop)
+		$1
+		;;
+	restart | reload)
+		true
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+		;;
+esac
+
+exit $?

@@ -2331,8 +2331,8 @@ enum
 };
 
 /* Define CC and CFLAGS which were used to build this version of GMP */
-#define __GMP_CC "/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host/bin/ccache /usr/bin/gcc"
-#define __GMP_CFLAGS "-O2 -I/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/host-gdb/host/include"
+#define __GMP_CC "/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host/bin/ccache /usr/bin/gcc"
+#define __GMP_CFLAGS "-O2 -I/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/host-gdb/host/include"
 
 /* Major version number is the value of __GNU_MP__ too, above. */
 #define __GNU_MP_VERSION            6

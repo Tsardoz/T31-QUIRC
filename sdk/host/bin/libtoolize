@@ -4290,11 +4290,11 @@ func_require_seen_libtool ()
   pkgmacro_files="libtool.m4 ltargz.m4 ltdl.m4 ltoptions.m4 ltsugar.m4 ltversion.m4 lt~obsolete.m4"
 
   # Locations for important files:
-  prefix="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host"
-  datadir="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share"
-  pkgauxdir="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/libtool/build-aux"
-  pkgltdldir="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/libtool"
-  aclocaldir="/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/aclocal"
+  prefix="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host"
+  datadir="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share"
+  pkgauxdir="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/libtool/build-aux"
+  pkgltdldir="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/libtool"
+  aclocaldir="/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/aclocal"
 
   # Allow the user to override the master libtoolize repository:
   if test -n "$_lt_pkgdatadir"; then

@@ -44,12 +44,17 @@ static int bitrate_sp[STREAM_TYPE_NUM] = { 0 };
 
 struct chn_conf chn[FS_CHN_NUM]; // Declaration without initialization
 
-void initialize_chn() {
+void initialize_chn(int channel) {
 	int idx;
 
 	for (idx=0;idx<2;idx++) {
 		chn[idx].index = idx; // 0 for the main channel
-		chn[idx].enable = 1; // Enable the channel
+		if (idx == channel) {
+			chn[idx].enable = 1; // Enable the channel
+		} else {
+			chn[idx].enable = 0; // Disable the channel
+		}
+		
 		chn[idx].payloadType = IMP_ENC_PROFILE_HEVC_MAIN;
 		chn[idx].fs_chn_attr.pixFmt = PIX_FMT_NV12;
 		chn[idx].fs_chn_attr.outFrmRateNum = config.channels[idx].frnum; // Set from config

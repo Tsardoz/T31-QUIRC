@@ -7,8 +7,8 @@ Name: libavformat
 Description: FFmpeg container format library
 Version: 58.76.100
 Requires: 
-Requires.private: libavcodec >= 58.134.100, libswresample >= 3.9.100, libavutil >= 56.70.100
+Requires.private: libavcodec >= 58.134.100, libavutil >= 56.70.100
 Conflicts:
 Libs: -L${libdir}  -lavformat 
-Libs.private: -lm -latomic -lbz2 -L/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/opencv4/host/bin/../mipsel-buildroot-linux-musl/sysroot/usr/lib -lz -L/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/opencv4/host/bin/../mipsel-buildroot-linux-musl/sysroot/usr/lib -lssl -lcrypto -latomic
+Libs.private: -lm -L/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/opencv4/host/bin/../mipsel-buildroot-linux-musl/sysroot/usr/lib -lz -latomic -latomic
 Cflags: -I${includedir}

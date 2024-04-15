@@ -13,8 +13,8 @@ struct QROutput {
 
 struct QROutput *scan_qr_with_quirc(uint8_t *imageData, int width, int height, int *outputCount);
 void SetImp(const char* isp, int value);
-int start_camera();
-int stop_camera();
+int start_camera(int channel);
+int stop_camera(int channel);
 void calculate_histogram(const unsigned char* y_channel, int* histogram, int num_pixels);
 void print_histogram_ascii(int* histogram, int max_height, int max_pixel_value);
 

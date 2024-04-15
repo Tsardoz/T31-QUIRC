@@ -34,7 +34,7 @@ our $PACKAGE = 'automake';
 our $PACKAGE_BUGREPORT = 'bug-automake@gnu.org';
 our $VERSION = '1.16.5';
 our $RELEASE_YEAR = '2021';
-our $libdir = $ENV{"AUTOMAKE_LIBDIR"} || '/home/me/output/t31x_gc2053_rtl8189ftv_v4l2_opencv/per-package/zbar/host/share/automake-1.16';
+our $libdir = $ENV{"AUTOMAKE_LIBDIR"} || '/home/me/output/wyze_c3_t31x_gc2053_rtl8189ftv_ffmpeg/per-package/zbar/host/share/automake-1.16';
 
 our $perl_threads = 0;
 # We need at least this version for CLONE support.
